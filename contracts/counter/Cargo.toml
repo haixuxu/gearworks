@@ -1,0 +1,23 @@
+[package]
+name = "counter"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+gstd = { git = "https://github.com/gear-tech/gear.git", tag = "v1.1.1" }
+
+
+[build]
+target = "wasm32-unknown-unknown"
+rustflags = [
+    "-C", "link-args=--import-memory",
+    "-C", "linker-plugin-lto",
+]
+
+[toolchain]
+channel = "stable"
+targets = ["wasm32-unknown-unknown"]
+profile = "default"
